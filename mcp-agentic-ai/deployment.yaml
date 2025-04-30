@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-server
+  labels:
+    app: mcp-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mcp-server
+  template:
+    metadata:
+      labels:
+        app: mcp-server
+        env: prod
+        owner: carlosbasto
+    spec:
+      containers:
+      - name: mcp-server
+        image: carlosbasto/mcp-server:latest
+        ports:
+        - containerPort: 8050
+        envFrom:
+        - secretRef:
+            name: mcp-env-secrets
+        resources:
+          requests:
+            cpu: 250m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi

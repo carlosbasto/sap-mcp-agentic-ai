@@ -1,0 +1,20 @@
+apiVersion: gateway.kyma-project.io/v2alpha1
+kind: APIRule
+metadata:
+  name: mcp-server-apirule
+  namespace: mcp-server
+spec:
+  gateway: kyma-system/kyma-gateway
+  hosts:
+    - mcp-server-sap.c-49e33bd.stage.kyma.ondemand.com
+  service:
+    name: mcp-server-service
+    namespace: mcp-server
+    port: 80
+  rules:
+    - path: /sse
+      methods: ["GET"]
+      noAuth: true
+    - path: /messages/{**}
+      methods: ["POST"]
+      noAuth: true
