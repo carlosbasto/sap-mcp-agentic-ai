@@ -6,7 +6,7 @@ metadata:
 spec:
   gateway: kyma-system/kyma-gateway
   hosts:
-    - mcp-server-sap.c-49e33bd.stage.kyma.ondemand.com
+    - <your-host>.kyma.ondemand.com
   service:
     name: mcp-server-service
     namespace: mcp-server
